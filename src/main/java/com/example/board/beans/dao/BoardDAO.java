@@ -12,6 +12,7 @@ import java.util.List;
 /*다만 DAO는 사용목적에 따라 vo처럼 일반 클래스가 아닌 DAO라는것을 알리기 위해
  * Component를 부모로 가진 Repository를 사용*/
 
+// 원격에서 수정됨2
 @Repository
 @RequiredArgsConstructor
 public class BoardDAO {
