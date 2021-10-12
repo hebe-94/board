@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Board</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css"/>
 </head>
-<body>
+<body class="is-preload">
+<!-- Main -->
+<div id="main">
+    <div class="wrapper">
+        <div class="inner">
 
+            <!-- Elements -->
+            <header class="major">
+                <h1>Board</h1>
+                <p>게시판 목록</p>
+            </header>
+            <!--href에 알맞는 URL 설정-->
+            <h3><a href="/board/register" class="button small">글 등록</a></h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr class="tHead">
+                        <th class="bno">번호</th>
+                        <th class="title">제목</th>
+                        <th class="writer">작성자</th>
+                        <th class="regDate">작성일</th>
+                        <th class="updateDate">수정일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="board : ${list}">
+                        <tr class="tBody" th:object="${board}">
+                            <td class="bno" th:text="*{bno}"></td>
+                            <td class="title"><a th:href="@{/board/read(bno=*{bno})}" th:text="*{title}"></a></td>
+                            <td class="writer" th:text="*{writer}"></td>
+                            <td class="regDate" th:text="*{regDate}"></td>
+                            <td class="updateDate" th:text="*{updateDate}"></td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script th:inline="javascript">
+
+    // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+    $(document).ready(function(){
+        let  bno = [[${bno}]];
+        if(bno == null){
+            return;
+        }
+
+        alert("게시글 " + bno + "번이 등록 되었습니다.");
+    })
+
+</script>
+<script src="/js/main.js"></script>
 </body>
 </html>

@@ -4,7 +4,9 @@
 <mapper namespace="com.example.board.mappers.BoardMapper">
     <select id="getList" resultType="boardVO">
         <![CDATA[
-        SELECT * FROM TBL_BOARD WHERE BNO > 0
+        SELECT /*+ INDEX_DESC(TBL_BOARD PK_BOARD) */
+        BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE
+        FROM TBL_BOARD WHERE BNO > 0
         ]]>
     </select>
 
